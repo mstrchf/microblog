@@ -18,22 +18,47 @@
       align-items: center;
       font-size: large;
     }
+
+    nav a {
+      text-decoration: none;
+      color: black;
+      padding: 5px;
+    }
+
+    nav a:hover { 
+      background-color: black;
+      color: white;
+      padding: 5px;
+      border-radius: 2.5px;
+      transition: .25s;
+    }
+
+    .error {
+      color: red;
+    }
   </style>
 </head>
 
 <body>
   <header>
     <h1>Microblog</h1>
-    <nav><a href="{{ url_for('index') }}">Home</a> <a href="{{ url_for('login') }}">Register</a></nav>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      {% if current_user.is_anonymous %}
+      <a class="log" href="{{ url_for('login') }}">Login</a>
+      {% else %}
+      <a class="log" href="{{ url_for('logout') }}">Logout</a>
+      {% endif %} 
+    </nav>
   </header>
   <hr>
 
   {% with messages = get_flashed_messages() %}
   {% if messages %}
   <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
+    
+    <li>{{ messages[0] }}</li>
+   
   </ul>
   {% endif %}
   {% endwith %}

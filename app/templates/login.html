@@ -19,6 +19,6 @@
         {% endfor %}
     </p>
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-    <p>{{ form.submit() }}</p>
+    <p>{{ form.submit() }} <span>New user? <a href="{{url_for('register')}}">Register</a></span></p>
 </form>
 {% endblock content %}
