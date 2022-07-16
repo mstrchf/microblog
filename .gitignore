@@ -1,4 +1,5 @@
+app.db
 venv/
 .vscode/
 __pycache__
-app.db
+*.db
