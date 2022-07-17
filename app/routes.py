@@ -1,4 +1,5 @@
 
+from datetime import datetime
 from app import app, db
 from flask import render_template, redirect, flash, url_for, request
 from app.forms import LoginForm, RegistrationForm
@@ -27,6 +28,12 @@ def index():
     ]
     return render_template('index.html', posts=posts)
 
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
