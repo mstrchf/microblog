@@ -50,8 +50,9 @@ def login():
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
+    user = current_user.username
     logout_user()
-    flash('User logged out successfully')
+    flash('User <{}> logged out successfully'.format(user))
     return redirect(url_for('index'))
 
 
@@ -70,3 +71,14 @@ def register():
         flash('Account for successfully created.')
         return redirect(url_for('login'))
     return render_template('register.html', form = form)
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'},  
+    ]
+
+    return render_template('user.html', user=user, posts=posts)
