@@ -8,17 +8,17 @@
         {{ form.username.label }} <br>
         {{ form.username(size=32) }} <br>
         {% for error in form.username.errors %}
-        <span style="color: red;">[{{ error }}]</span>
+        <span class="text-danger">{{ error }}</span>
         {% endfor %}
     </p>
     <p>
         {{ form.password.label }} <br>
         {{ form.password(size=32) }} <br>
         {% for error in form.password.errors %}
-        <span style="color: red">[{{ error }}]</span>
+        <span class="text-danger">{{ error }}</span>
         {% endfor %}
     </p>
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-    <p>{{ form.submit() }} <span>New user? <a href="{{url_for('register')}}">Register</a></span></p>
+    <p>{{ form.submit(class='btn btn-primary') }} <span>New user <i class="bi bi-question-circle-fill"></i> <a href="{{url_for('register')}}">Register</a></span></p>
 </form>
 {% endblock content %}
