@@ -1,2 +1,10 @@
 FLASK_APP=main.py
 FLASK_DEBUG=0
+FLASK_ENV = production
+
+MAIL_SERVER = smtp.sendgrid.net
+MAIL_PORT = 587
+MAIL_USE_TLS = True
+MAIL_USERNAME = apikey
+MAIL_DEFAULT_SENDER = pho.dmc5@gmail.com
+MAIL_PASSWORD = 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
